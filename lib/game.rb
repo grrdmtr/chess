@@ -3,9 +3,11 @@
 require_relative 'chess_board'
 require_relative 'display'
 require_relative 'player'
+require_relative 'save_load'
 
 class Game
   include Display
+  include GameMemory
 
   def initialize(player1, player2)
     @game = ChessBoard.new
@@ -14,7 +16,18 @@ class Game
     @game.initialize_board(@player1, @player2)
     @current_player = @player1
     @winner = nil
-    game_loop
+    @game_instance = self
+  end
+
+  def start_game
+    start_message
+    input = gets.chomp.to_i
+    case input
+    when 1
+      game_loop
+    when 2
+      load_game
+    end
   end
 
   def game_loop
@@ -22,9 +35,14 @@ class Game
     until winner?
       make_turn(@current_player)
       switch_player
+      save_game(@game_instance) if save_game? == 1
     end
-    @game.show_board
-    game_over(@winner)
+    case @game.show_board
+    when 1
+      start_game
+    when 2
+      load_game
+    end
   end
 
   def make_turn(player)
@@ -50,4 +68,4 @@ class Game
   end
 end
 
-Game.new('Ash', 'Pikachu')
+Game.new('Ash', 'Pikachu').start_game

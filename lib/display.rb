@@ -3,7 +3,7 @@ module Display
     puts "
     Let's play Chess!
 
-    input 1 to play with human,
+    input 1 to play new game with human,
     input 2 to play a saved game.
     "
   end
@@ -61,7 +61,6 @@ module Display
   def get_input_chess(player)
     puts "
     #{player} Select your chess.
-    For example: a2, b3
     "
   end
 
@@ -69,7 +68,6 @@ module Display
     puts "
     #{player}
     Make your move.
-    For example: a2, b3
     "
   end
 
@@ -81,5 +79,13 @@ module Display
     input 2 to load a saved game
     input others to quit
     "
+    gets.chomp.to_i
+  end
+
+  def save_game?
+    puts '
+    Press 1 if you want to save the game
+    '
+    gets.chomp.to_i
   end
 end

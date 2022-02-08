@@ -164,21 +164,3 @@ class ChessBoard
     return true if @selected_chess.position == [row_index, column_index]
   end
 end
-
-game = ChessBoard.new
-player1 = Player.new('white', 'Pikachu')
-player2 = Player.new('black', 'Ash')
-game.initialize_board(player1, player2)
-p game.select_chess(player2, 'b2')
-game.move_chess(player2, 'b3')
-p game.select_chess(player2, 'b1')
-game.move_chess(player2, 'c3')
-game.show_board
-p game.select_chess(player1, 'c7')
-game.move_chess(player1, 'c6')
-p game.select_chess(player1, 'd7')
-game.move_chess(player1, 'd6')
-game.show_board
-p game.select_chess(player1, 'c8')
-p game.select_chess(player2, 'a1')
-p game.select_chess(player1, 'e8')
