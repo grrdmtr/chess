@@ -35,7 +35,6 @@ class Game
     until winner?
       make_turn(@current_player)
       switch_player
-      save_game(@game_instance) if save_game? == 1
     end
     case @game.show_board
     when 1
@@ -53,9 +52,13 @@ class Game
     @game.show_board
     get_input_move(player.name)
     input = gets.chomp
-    until @game.move_chess(player, input)
-      input = gets.chomp
-      @game.select_chess(player, input)
+    if input == 1
+      save_game(@game_instance)
+    else
+      until @game.move_chess(player, input)
+        input = gets.chomp
+        @game.select_chess(player, input)
+      end
     end
   end
 

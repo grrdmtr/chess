@@ -66,8 +66,7 @@ module Display
 
   def get_input_move(player)
     puts "
-    #{player}
-    Make your move.
+    #{player} Make your move, or press 1 if you want to save the game
     "
   end
 
@@ -77,7 +76,7 @@ module Display
     Play again?
     input 1 to start a new game
     input 2 to load a saved game
-    input others to quit
+    input other to quit
     "
     gets.chomp.to_i
   end

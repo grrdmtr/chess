@@ -135,8 +135,10 @@ class ChessBoard
       choose_promotion
       @selected_chess = convert_chess(gets.chomp.upcase, new_position[0], new_position[1], 'white')
     end
-    status_update(player.name) unless new_position.nil? && new_position.color == player.color
-    checkmate?(new_position, player.name) unless new_position.nil?
+   unless @board[new_position[0]][new_position[1]].nil?
+    status_update(player.name)
+    checkmate?(new_position, player.name)
+   end
     piece_submit(old_position, new_position)
   end
 
